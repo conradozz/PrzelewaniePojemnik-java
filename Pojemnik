@@ -1,0 +1,48 @@
+package Pojemnik;
+
+public class Pojemnik {
+    private double ileLitrow;
+   
+    Pojemnik(double ileLitrow){
+        this. ileLitrow = ileLitrow;
+    }
+    
+    double getileLitrow(){
+        return ileLitrow;
+    } 
+    
+    void wlej(double ilosc){
+            this.ileLitrow += ilosc;
+    }
+    
+    boolean wylej(double ilosc){
+        if (ilosc < ileLitrow)
+            this.ileLitrow -= ilosc;
+        else 
+            return false;
+        return true;
+    }
+    
+    void przelej (double ilosc, Pojemnik gdziePrzelac){
+        if (this.wylej(ilosc))
+            gdziePrzelac.wlej(ilosc);
+        else 
+            System.out.println("zbyt malo litrow do przelania w danym pojemniku, operacja nie powiodla sie");
+    }
+      
+    public static void main(String[] args) {
+    
+    Pojemnik [] pojemnik = new Pojemnik [3];
+    pojemnik [0] = new Pojemnik(5);
+    pojemnik [1] = new Pojemnik(18);
+    pojemnik [2] = new Pojemnik(8);
+    
+    pojemnik[0].przelej(4, pojemnik[1]);
+    
+    System.out.println("Stan pojemnikow po operacji przelewania");
+    System.out.println("pojemnik 1: " + pojemnik[0].getileLitrow());
+    System.out.println("pojemnik 2: " + pojemnik[1].getileLitrow());
+    System.out.println("pojemnik 3: " + pojemnik[2].getileLitrow());
+    }
+    
+}
